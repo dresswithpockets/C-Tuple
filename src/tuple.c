@@ -19,33 +19,60 @@
 #include <stdlib.h>
 #include "tuple.h"
 
-Tuple* TUPLECALL CreateTuple(int n_args, ...) {
+tuple* TUPLECALL make_tuple(int n_args, ...) {
 	va_list varlist;
 	va_start(varlist, n_args);
 
-	int varsSize;
-	void** vars = (void**)malloc(n_args * sizeof(void*));
+	int vars_size;
+	void** ptrs = (void**)malloc(n_args * sizeof(void*));
+	int* stack = (int*)malloc(n_args * sizeof(int));
 
 	for (int i = 0; i < n_args; i++) {
-		void* arg = va_arg(varlist, void*);
+		tuple_ptr* arg = va_arg(varlist, tuple_ptr*);
 
-		varsSize += sizeof(arg);
+		vars_size += sizeof(arg);
 
-		vars[i] = arg;
+		ptrs[i] = arg->ptr;
+		stack[i] = arg->on_stack;
+		
+		free(arg);
 	}
 
-	Tuple* t = (Tuple*)malloc(varsSize + sizeof(varsSize));
+	// Size of all of the arguments + size of an int value (vars_size) since tuple has an array of void* and a single int.
+	tuple* t = (tuple*)malloc(vars_size + sizeof(vars_size));
 
-	t->values = vars;
-	t->tSize = n_args;
+	t->t_ptrs = ptrs;
+	t->t_size = n_args;
+	t->t_stack = stack;
 
 	va_end(varlist);
 
 	return t;
 }
 
-void TUPLECALL DestroyTuple(Tuple* t) {
-	for (int i = 0; i < t->tSize; i++) free(t->values[i]);
-	free(t->values);
+void TUPLECALL free_tuple(tuple* t) {
+	for (int i = 0; i < t->t_size; i++) {
+		if (!t->t_stack[i]) free(t->t_ptrs[i]);
+	}
+	free(t->t_ptrs);
 	free(t);
+}
+
+tuple_ptr* TUPLECALL tptr_stack(void* vptr) {
+	tuple_ptr* tptr = (tuple_ptr*)malloc(sizeof(tuple_ptr));
+	tptr->ptr = vptr;
+	tptr->on_stack = 1;
+	return tptr;
+}
+
+tuple_ptr* TUPLECALL tptr(void* vptr) {
+	tuple_ptr* tptr = (tuple_ptr*)malloc(sizeof(tuple_ptr));
+	tptr->ptr = vptr;
+	tptr->on_stack = 0;
+	return tptr;
+}
+
+void TUPLECALL free_tptr(tuple_ptr* tptr) {
+	if (!tptr->on_stack) free(tptr->ptr);
+	free(tptr);
 }
