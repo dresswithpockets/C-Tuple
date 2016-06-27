@@ -36,13 +36,23 @@
 extern "c" {
 #endif
 
-typedef struct STuple {
-	int tSize;
-	void** values;
-} Tuple;
+typedef struct s_tuple {
+	int t_size;
+	void** t_ptrs;
+	int* t_stack;
+} tuple;
 
-TUPLEAPI Tuple* TUPLECALL CreateTuple(int, ...);
-TUPLEAPI void TUPLECALL DestroyTuple(Tuple*);
+typedef struct s_tuple_part {
+	void* ptr;
+	int on_stack;
+} tuple_ptr;
+
+TUPLEAPI tuple* TUPLECALL make_tuple(int, ...);
+TUPLEAPI void TUPLECALL free_tuple(tuple*);
+
+TUPLEAPI tuple_ptr* TUPLECALL tptr_stack(void*);
+TUPLEAPI tuple_ptr* TUPLECALL tptr(void*);
+TUPLEAPI void TUPLECALL free_tptr(tuple_ptr*);
 
 #ifdef __cplusplus
 }
