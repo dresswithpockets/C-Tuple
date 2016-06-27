@@ -7,30 +7,26 @@ Simply add the Tuple.h and Tuple.c files to your C or C++ project, or any other 
 Here is some sample code of Tuples in use, below. *Keep in mind that a Tuple holds an array of void pointers, rather than actually casted values. Thus, you must know the casted types of each void pointer, or rather the return signature of the function returning a Tuple, in order to cast to the proper values.*
 
 ```c
+typedef struct TStruct {
+	char* value;
+} TestStruct;
+
 // The documentation for a function that returns a Tuple should explicitly say what kinda of Tuple it returns.
 // e.g.
 // TestTupleA() returns a Tuple(int*, int*, char*).
-
-// Returns Tuple(int*->5129, int*->999182, char*->"Hello, World!")
+// Statically Returns Tuple(int*->5129, int*->999182, char*->"Hello, World!")
 Tuple* TestTupleA() {
 	// Create a pointer to each value you want the Tuple to return a void* to,
 	// then pass it into the Tuple.
 	int* a = (int*)malloc(sizeof(int));
 	int* b = (int*)malloc(sizeof(int));
-	char* c = (char*)malloc(sizeof(char) * 16);
 	*a = 5129;
 	*b = 999182;
-	c = "Hello, World!";
+	char* c = "Hello, World!";
 	return CreateTuple(3, a, b, c);
 }
 
-typedef struct TStruct {
-	char value[32];
-} TestStruct;
-
-
 // TestTupleB returns a Tuple(char*, int*, float*, long long int*, char*, TestStruct*)
-
 // Statically Returns Tuple(char*->'a', int*->(-52), float*->5.1, long long int*=-5291828747, char*->"lol, you!", TestStruct*->TestStruct("some value"))
 Tuple* TestTupleB() {
 	// Same deal with the pointers, but theres alot more here.
@@ -38,20 +34,20 @@ Tuple* TestTupleB() {
 	int* b = (int*)malloc(sizeof(int));
 	float* c = (float*)malloc(sizeof(float));
 	long long int* d = (long long int*)malloc(sizeof(long long int));
-	char* e = (char*)malloc(sizeof(char) * 16);
 	TestStruct* f = (TestStruct*)malloc(sizeof(TestStruct));
+
 	*a = 'a';
 	*b = -52;
 	*c = 5.1;
 	*d = -5291828747;
-	*e = "lol, you!";
+	char* e = "lol, you!";
 	f->value = "some value";
 	
-	return CreateTuple(6, a, b, c, d, e, f, g);
+	return CreateTuple(6, a, b, c, d, e, f);
 }
 
 // This is an example of getting all the values from the void** values found in a Tuple
-void DoTest() {
+int main() {
 	// We expect three return variables from tuple since the docs for TestTupleA say so;
 	// Thus we can assume that tuple has only three params in values;
 	// However, we will ensure this is correct using tSize.
@@ -98,6 +94,8 @@ void DoTest() {
 	}
 	
 	DestroyTuple(tuple); // Ensure that the memory is freed up after usage.
+
+	return 0;
 }
 ```
 
