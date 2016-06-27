@@ -23,7 +23,11 @@ Tuple* TestTupleA() {
 	*a = 5129;
 	*b = 999182;
 	char* c = "Hello, World!";
-	return CreateTuple(3, a, b, c);
+	
+	// call tptr(void*) to create a pointer with the on_stack flag set to false
+	// or call tptr_stack(void*) for pointers on the stack to create a pointer
+	// with the on_Stack flag set to true
+	return CreateTuple(3, tptr(a), tptr(b), tptr_stack(c));
 }
 
 // TestTupleB returns a Tuple(char*, int*, float*, long long int*, char*, TestStruct*)
@@ -43,7 +47,7 @@ Tuple* TestTupleB() {
 	char* e = "lol, you!";
 	f->value = "some value";
 	
-	return CreateTuple(6, a, b, c, d, e, f);
+	return CreateTuple(6, tptr_stack(a), tptr(b), tptr(c), tptr(d), tptr_stack(e), tptr(f));
 }
 
 // This is an example of getting all the values from the void** values found in a Tuple
