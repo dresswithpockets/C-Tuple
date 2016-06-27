@@ -57,13 +57,13 @@ int main() {
 	// However, we will ensure this is correct using tSize.
 	Tuple* tuple = TestTupleA();
 	
-	if (tuple->tSize != 3) { // TestTupleA() didn't return a value with three return values, like it said it would!
+	if (tuple->t_size != 3) { // TestTupleA() didn't return a value with three return values, like it said it would!
 		printf("TestTupleA did not return a value with the expected number of values.");
 	}
 	else {
-		int a = *((int*)tuple->values[0]);
-		int b = *((int*)tuple->values[1]);
-		char* c = (char*)tuple->values[2];
+		int a = *((int*)tuple->t_ptrs[0]);
+		int b = *((int*)tuple->t_ptrs[1]);
+		char* c = (char*)tuple->t_ptrs[2];
 		
 		printf("a = %i \nb = %i \nc = %s", a, b, c);
 		// Prints:
@@ -76,16 +76,16 @@ int main() {
 	// of types char*, int*, float*, long long int*, char* and TestStruct*
 	tuple = TestTupleB();
 	
-	if (tuple->tSize != 6) {
+	if (tuple->t_size != 6) {
 		printf("TestTupleB did not return a value with the expected number of values.");
 	}
 	else {
-		char* a = (char*)tuple->values[0];
-		int b = *((int*)tuple->values[1]);
-		float c = *((float*)tuple->values[2]);
-		long long int d = *((long long int*)tuple->values[3]);
-		char* e = (char*)tuple->values[4];
-		TestStruct* f = (TestStruct*)tuple->values[5];
+		char* a = (char*)tuple->t_ptrs[0];
+		int b = *((int*)tuple->t_ptrs[1]);
+		float c = *((float*)tuple->t_ptrs[2]);
+		long long int d = *((long long int*)tuple->t_ptrs[3]);
+		char* e = (char*)tuple->t_ptrs[4];
+		TestStruct* f = (TestStruct*)tuple->t_ptrs[5];
 		
 		printf("a = %s \nb = %i \nc = %f \nd = %lli \ne = %s \nf->value = %s", a, b, c, d, e, f->value);
 		// Prints:
