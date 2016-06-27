@@ -34,7 +34,6 @@ Tuple* TUPLECALL CreateTuple(int n_args, ...) {
 		vars[i] = arg;
 	}
 
-	// Size of all of the arguments + size of an int value (varsSize) since Tuple has an array of void* and a single int.
 	Tuple* t = (Tuple*)malloc(varsSize + sizeof(varsSize));
 
 	t->values = vars;
@@ -46,6 +45,7 @@ Tuple* TUPLECALL CreateTuple(int n_args, ...) {
 }
 
 void TUPLECALL DestroyTuple(Tuple* t) {
+	for (int i = 0; i < t->tSize; i++) free(t->values[i]);
 	free(t->values);
 	free(t);
 }
