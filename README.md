@@ -65,4 +65,7 @@ If you want to link to an SO instead of the .c files, do the thing:
 ```bash
 gcc -std=c99 -c -Wall -Werror -fpic tuple.c
 gcc -std=c99 -shared -o -tuple.so tuple.o
+
+#if you want to compile the tupletest.c program that comes with c-tuple:
+gcc -L. -Wall -o tupletest tupletest.c -l:libtuple.so
 ```
