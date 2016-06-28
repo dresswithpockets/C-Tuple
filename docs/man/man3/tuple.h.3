@@ -1,4 +1,4 @@
-.TH "G:/Programming/C-Tuple/src/tuple.h" 3 "Mon Jun 27 2016" "C-Tuple" \" -*- nroff -*-
+.TH "G:/Programming/C-Tuple/src/tuple.h" 3 "Tue Jun 28 2016" "C-Tuple" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -49,23 +49,23 @@ G:/Programming/C-Tuple/src/tuple.h \- Tuple\&.
 .ti -1c
 .RI "\fBTUPLEAPI\fP \fBtuple\fP *\fBTUPLECALL\fP \fBmake_tuple\fP (int n_args,\&.\&.\&.)"
 .br
-.RI "\fIPass a collection of tuple_ptr* in order to create a single tuple value that points to each value in the collection\&. \fP"
+.RI "\fIPass a collection of tuple_ptr* to create a collection of any-value pointers\&. \fP"
 .ti -1c
 .RI "\fBTUPLEAPI\fP void \fBTUPLECALL\fP \fBfree_tuple\fP (\fBtuple\fP *t)"
 .br
-.RI "\fIPass a pointer to a tuple to be correctly freed and deallocated\&. Ptrs in the tuple that are on the stack will be ignored\&. \fP"
+.RI "\fIPass a pointer to a tuple to be correctly freed and deallocated\&. \fP"
 .ti -1c
 .RI "\fBTUPLEAPI\fP \fBtuple_ptr\fP *\fBTUPLECALL\fP \fBtptr_stack\fP (void *vptr)"
 .br
-.RI "\fIPass STACK ALLOCATED pointers to create a tuple_ptre* for make_tuple(int, \&.\&.\&.) \fP"
+.RI "\fIPass STACK ALLOCATED pointers to create a tuple_ptr*\&. \fP"
 .ti -1c
 .RI "\fBTUPLEAPI\fP \fBtuple_ptr\fP *\fBTUPLECALL\fP \fBtptr\fP (void *vptr)"
 .br
-.RI "\fIPass HEAP ALLOCATED pointers to create a tuple_ptr* for make_tuple(int, \&.\&.\&.) \fP"
+.RI "\fIPass HEAP ALLOCATED pointers to create a tuple_ptr*\&. \fP"
 .ti -1c
 .RI "\fBTUPLEAPI\fP void \fBTUPLECALL\fP \fBfree_tptr\fP (\fBtuple_ptr\fP *vptr)"
 .br
-.RI "\fIPass a tuple_ptr* to be correctly freed and deallocated\&. Stack-allocated values will be ignored\&. \fP"
+.RI "\fIPass a tuple_ptr* to be correctly freed and deallocated\&. \fP"
 .in -1c
 .SH "Detailed Description"
 .PP 
@@ -105,7 +105,7 @@ If the on_stack flag is incorrectly applied, then memory leakage will occur\&.
 .SS "\fBTUPLEAPI\fP void \fBTUPLECALL\fP free_tptr (\fBtuple_ptr\fP * tptr)"
 
 .PP
-Pass a tuple_ptr* to be correctly freed and deallocated\&. Stack-allocated values will be ignored\&. 
+Pass a tuple_ptr* to be correctly freed and deallocated\&. Values which have been flagged as stack-allocated will be ignored when freeing \fBtuple_ptr\fP's via \fBfree_tptr()\fP\&.
 .PP
 \fBParameters:\fP
 .RS 4
@@ -121,7 +121,7 @@ Pass a tuple_ptr* to be correctly freed and deallocated\&. Stack-allocated value
 .SS "\fBTUPLEAPI\fP void \fBTUPLECALL\fP free_tuple (\fBtuple\fP * t)"
 
 .PP
-Pass a pointer to a tuple to be correctly freed and deallocated\&. Ptrs in the tuple that are on the stack will be ignored\&. 
+Pass a pointer to a tuple to be correctly freed and deallocated\&. Values in the tuple that have an associated flag identifying it as a stack-allocated value will be ignored when freeing tuple's via \fBfree_tuple()\fP\&.
 .PP
 \fBParameters:\fP
 .RS 4
@@ -137,7 +137,7 @@ Pass a pointer to a tuple to be correctly freed and deallocated\&. Ptrs in the t
 .SS "\fBTUPLEAPI\fP \fBtuple\fP* \fBTUPLECALL\fP make_tuple (int n_args,  \&.\&.\&.)"
 
 .PP
-Pass a collection of tuple_ptr* in order to create a single tuple value that points to each value in the collection\&. 
+Pass a collection of tuple_ptr* to create a collection of any-value pointers\&. 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -160,7 +160,7 @@ A tuple pointer that contains a collection of pointers to values of any type\&.
 .SS "\fBTUPLEAPI\fP \fBtuple_ptr\fP* \fBTUPLECALL\fP tptr (void * vptr)"
 
 .PP
-Pass HEAP ALLOCATED pointers to create a tuple_ptr* for make_tuple(int, \&.\&.\&.) 
+Pass HEAP ALLOCATED pointers to create a tuple_ptr*\&. 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -169,7 +169,7 @@ Pass HEAP ALLOCATED pointers to create a tuple_ptr* for make_tuple(int, \&.\&.\&
 .PP
 \fBReturns:\fP
 .RS 4
-A tuple_ptr* with a void* ptr assigned to the value passed through the ptr param, and no on_stack flag\&. 
+A tuple_ptr* with a void* ptr assigned to the value passed through vptr, with the on_stack flag set to false\&. 
 .RE
 .PP
 \fBSee also:\fP
@@ -181,7 +181,7 @@ A tuple_ptr* with a void* ptr assigned to the value passed through the ptr param
 .SS "\fBTUPLEAPI\fP \fBtuple_ptr\fP* \fBTUPLECALL\fP tptr_stack (void * vptr)"
 
 .PP
-Pass STACK ALLOCATED pointers to create a tuple_ptre* for make_tuple(int, \&.\&.\&.) 
+Pass STACK ALLOCATED pointers to create a tuple_ptr*\&. 
 .PP
 \fBParameters:\fP
 .RS 4
@@ -190,7 +190,7 @@ Pass STACK ALLOCATED pointers to create a tuple_ptre* for make_tuple(int, \&.\&.
 .PP
 \fBReturns:\fP
 .RS 4
-A tuple_ptr* with a void* ptr assigned to the value passed through the ptr param, and an on_stack flag\&. 
+A tuple_ptr* with a void* ptr assigned to the value passed through vptr, with the on_stack flag set to true\&. 
 .RE
 .PP
 \fBSee also:\fP
