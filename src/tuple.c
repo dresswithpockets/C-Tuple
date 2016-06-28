@@ -15,6 +15,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+#include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
 #include "tuple.h"
@@ -92,11 +93,11 @@ tuple_ptr* TUPLECALL tptr(void* vptr) {
 
 void TUPLECALL free_tptr(tuple_ptr* tptr) {
 	if (!tptr->on_stack) {
-		if (debug_flag) printf("Freeing void pointer at: %p ... found in tuple_ptr: %p", tptr->ptr, tptr)
+		if (debug_flag) printf("Freeing void pointer at: %p ... found in tuple_ptr: %p", tptr->ptr, tptr);
 		free(tptr->ptr);
 	}
 
-	if (debug_flag) printf("Freeing tuple_ptr at: %p", tptr)
+	if (debug_flag) printf("Freeing tuple_ptr at: %p", tptr);
 	free(tptr);
 }
 
