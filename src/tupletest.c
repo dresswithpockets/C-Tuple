@@ -23,6 +23,8 @@ tuple* test_tuple() {
 
 int main() {
 
+	tuple_debug(1);
+
 	tuple* t = test_tuple();
 
 	int a = *((int*)t->t_ptrs[0]);
@@ -33,6 +35,8 @@ int main() {
 	printf("a = %i \nb = %i \nc = %s\nd = %lld\n", a, b, c, d);
 
 	free_tuple(t);
+
+	log_allocations();
 
 	return 0;
 }
