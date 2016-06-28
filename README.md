@@ -103,17 +103,11 @@ int main() {
 }
 ```
 
-## Building A DLL
+## Building A Shared Library
 
-If you need a DLL for PInvoking it from C#, as an example, run the following commands over tuple.c
+If you want to link to an SO instead of the .c files, do the thing:
 
-#### Windows (MinGW)
 ```bash
-gcc -c -o tuple.o tuple.c -D TUPLE_EXPORTS
-gcc -o tuple.dll tuple.o -s -shared -Wl,--subsystem,windows
-```
-#### OS X and Linux (GCC)
-```bash
-gcc -c tuple.c
-gcc -shared -o tuple.dll tuple.o
+gcc -std=c99 -c -Wall -Werror -fpic tuple.c
+gcc -std=c99 -shared -o -tuple.so tuple.o
 ```
