@@ -131,6 +131,15 @@ extern "c" {
 	*/
 	TUPLEAPI void TUPLECALL free_tptr(tuple_ptr* vptr);
 
+	/*! \fn void tuple_debug(int debug)
+		\brief pass a boolean flag to determine whether debug tuple output should be printed.
+
+		All memory allocations and frees will be printed, with associated addresses, including any information 
+
+		\param debug A flag value. When 0, then debug mode is turned off. Otherwise, debug mode is toggled on.
+	*/
+	TUPLEAPI void TUPLECALL tuple_debug(int debug);
+
 #ifdef __cplusplus
 }
 #endif
