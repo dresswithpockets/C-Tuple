@@ -140,6 +140,11 @@ extern "c" {
 	*/
 	TUPLEAPI void TUPLECALL tuple_debug(int debug);
 
+	/*! \fn void log_allocations()
+		\brief print a count of all mallocs and frees from within c-tuple.
+	*/
+	TUPLEAPI void TUPLECALL log_allocations();
+
 #ifdef __cplusplus
 }
 #endif
