@@ -16,6 +16,7 @@
 
 # Shared objects (inc. Windows DLLs)
 *.dll
+!tuple.dll
 *.so
 *.so.*
 *.dylib
@@ -31,3 +32,5 @@
 # Debug files
 *.dSYM/
 *.su
+
+/ctuple/
