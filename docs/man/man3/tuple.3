@@ -1,0 +1,45 @@
+.TH "tuple" 3 "Mon Jun 27 2016" "C-Tuple" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+tuple \- A Tuple Representation\&. A value of values\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <tuple\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "int \fBt_size\fP"
+.br
+.RI "\fIThe number of pointers allocated to the t_ptrs array\&. \fP"
+.ti -1c
+.RI "void ** \fBt_ptrs\fP"
+.br
+.RI "\fIA collection of generic pointers, each pointer pointing to a value of any type\&. \fP"
+.ti -1c
+.RI "int * \fBt_stack\fP"
+.br
+.RI "\fIA collection of flags identifying whether or not a ptr on t_ptrs of the same index has been allocated on the stack\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+A Tuple Representation\&. A value of values\&. 
+
+A Tuple contains a collection of pointers to values, as well as information for if specific values were allocated on the stack or not\&.
+.PP
+If the flags for each t_ptr provided in t_stack are incorrectly assigned, memory leakage will occur\&.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBmake_tuple()\fP, \fBfree_tuple()\fP 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for C-Tuple from the source code\&.

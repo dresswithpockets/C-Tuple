@@ -1,0 +1,41 @@
+.TH "tuple_ptr" 3 "Mon Jun 27 2016" "C-Tuple" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+tuple_ptr \- A Part of a Tuple\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <tuple\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "void * \fBptr\fP"
+.br
+.RI "\fIA pointer to a value of any type\&. \fP"
+.ti -1c
+.RI "int \fBon_stack\fP"
+.br
+.RI "\fIA falg identifying whether or not the value assigned to ptr has been allocated on the stack\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+A Part of a Tuple\&. 
+
+A Tuple Pointer or a Tuple Part is a value that contains a pointer to a value and a flag suggesting whether or not the value was allocated on the stack\&.
+.PP
+If the on_stack flag is incorrectly applied, then memory leakage will occur\&.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBtptr()\fP, \fBtptr_stack()\fP, \fBfree_tptr()\fP 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for C-Tuple from the source code\&.

@@ -1,0 +1,204 @@
+.TH "G:/Programming/C-Tuple/src/tuple.h" 3 "Mon Jun 27 2016" "C-Tuple" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+G:/Programming/C-Tuple/src/tuple.h \- Tuple\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBtuple\fP"
+.br
+.RI "\fIA Tuple Representation\&. A value of values\&. \fP"
+.ti -1c
+.RI "struct \fBtuple_ptr\fP"
+.br
+.RI "\fIA Part of a Tuple\&. \fP"
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBTUPLEAPI\fP"
+.br
+.RI "\fIShorthand for __declspec(dllimport) \fP"
+.ti -1c
+.RI "#define \fBTUPLECALL\fP"
+.br
+.RI "\fIShorthand for __cdecl\&. \fP"
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fBtuple\fP \fBtuple\fP"
+.br
+.RI "\fIA Tuple Representation\&. A value of values\&. \fP"
+.ti -1c
+.RI "typedef struct \fBtuple_ptr\fP \fBtuple_ptr\fP"
+.br
+.RI "\fIA Part of a Tuple\&. \fP"
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTUPLEAPI\fP \fBtuple\fP *\fBTUPLECALL\fP \fBmake_tuple\fP (int n_args,\&.\&.\&.)"
+.br
+.RI "\fIPass a collection of tuple_ptr* in order to create a single tuple value that points to each value in the collection\&. \fP"
+.ti -1c
+.RI "\fBTUPLEAPI\fP void \fBTUPLECALL\fP \fBfree_tuple\fP (\fBtuple\fP *t)"
+.br
+.RI "\fIPass a pointer to a tuple to be correctly freed and deallocated\&. Ptrs in the tuple that are on the stack will be ignored\&. \fP"
+.ti -1c
+.RI "\fBTUPLEAPI\fP \fBtuple_ptr\fP *\fBTUPLECALL\fP \fBtptr_stack\fP (void *vptr)"
+.br
+.RI "\fIPass STACK ALLOCATED pointers to create a tuple_ptre* for make_tuple(int, \&.\&.\&.) \fP"
+.ti -1c
+.RI "\fBTUPLEAPI\fP \fBtuple_ptr\fP *\fBTUPLECALL\fP \fBtptr\fP (void *vptr)"
+.br
+.RI "\fIPass HEAP ALLOCATED pointers to create a tuple_ptr* for make_tuple(int, \&.\&.\&.) \fP"
+.ti -1c
+.RI "\fBTUPLEAPI\fP void \fBTUPLECALL\fP \fBfree_tptr\fP (\fBtuple_ptr\fP *vptr)"
+.br
+.RI "\fIPass a tuple_ptr* to be correctly freed and deallocated\&. Stack-allocated values will be ignored\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Tuple\&. 
+
+An implementation of Tuples in C-Lang using void pointers\&. 
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef struct \fBtuple\fP  \fBtuple\fP"
+
+.PP
+A Tuple Representation\&. A value of values\&. A Tuple contains a collection of pointers to values, as well as information for if specific values were allocated on the stack or not\&.
+.PP
+If the flags for each t_ptr provided in t_stack are incorrectly assigned, memory leakage will occur\&.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBmake_tuple()\fP, \fBfree_tuple()\fP 
+.RE
+.PP
+
+.SS "typedef struct \fBtuple_ptr\fP  \fBtuple_ptr\fP"
+
+.PP
+A Part of a Tuple\&. A Tuple Pointer or a Tuple Part is a value that contains a pointer to a value and a flag suggesting whether or not the value was allocated on the stack\&.
+.PP
+If the on_stack flag is incorrectly applied, then memory leakage will occur\&.
+.PP
+\fBSee also:\fP
+.RS 4
+\fBtptr()\fP, \fBtptr_stack()\fP, \fBfree_tptr()\fP 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "\fBTUPLEAPI\fP void \fBTUPLECALL\fP free_tptr (\fBtuple_ptr\fP * tptr)"
+
+.PP
+Pass a tuple_ptr* to be correctly freed and deallocated\&. Stack-allocated values will be ignored\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItptr\fP A pointer to a \fBtuple_ptr\fP value to be deallocated, including the tptr->ptr value if the on_stack flag is false\&. 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBtptr()\fP, \fBtptr_stack()\fP 
+.RE
+.PP
+
+.SS "\fBTUPLEAPI\fP void \fBTUPLECALL\fP free_tuple (\fBtuple\fP * t)"
+
+.PP
+Pass a pointer to a tuple to be correctly freed and deallocated\&. Ptrs in the tuple that are on the stack will be ignored\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIt\fP A pointer to an allocated tuple\&. 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBmake_tuple()\fP 
+.RE
+.PP
+
+.SS "\fBTUPLEAPI\fP \fBtuple\fP* \fBTUPLECALL\fP make_tuple (int n_args,  \&.\&.\&.)"
+
+.PP
+Pass a collection of tuple_ptr* in order to create a single tuple value that points to each value in the collection\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIn_args\fP The number of arguments in the variable argument collection, 
+.br
+\fI\&.\&.\&.\fP The collection of \fBtuple_ptr\fP pointers, preferrably created via \fBtptr(void* ptr)\fP or \fBtptr_stack(void* ptr)\fP\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A tuple pointer that contains a collection of pointers to values of any type\&.
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBtptr()\fP, \fBtptr_stack()\fP, \fBfree_tuple()\fP 
+.RE
+.PP
+
+.SS "\fBTUPLEAPI\fP \fBtuple_ptr\fP* \fBTUPLECALL\fP tptr (void * vptr)"
+
+.PP
+Pass HEAP ALLOCATED pointers to create a tuple_ptr* for make_tuple(int, \&.\&.\&.) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIvptr\fP A pointer to any value that was allocated on the heap\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A tuple_ptr* with a void* ptr assigned to the value passed through the ptr param, and no on_stack flag\&. 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBtptr_stack()\fP, \fBfree_tptr()\fP, \fBmake_tuple()\fP 
+.RE
+.PP
+
+.SS "\fBTUPLEAPI\fP \fBtuple_ptr\fP* \fBTUPLECALL\fP tptr_stack (void * vptr)"
+
+.PP
+Pass STACK ALLOCATED pointers to create a tuple_ptre* for make_tuple(int, \&.\&.\&.) 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIvptr\fP A pointer to any value that was allocated on the stack\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A tuple_ptr* with a void* ptr assigned to the value passed through the ptr param, and an on_stack flag\&. 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBtptr()\fP, \fBfree_tptr()\fP, \fBmake_tuple()\fP 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for C-Tuple from the source code\&.
