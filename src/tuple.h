@@ -36,92 +36,96 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 extern "c" {
 #endif
 
-	/**
-		A Tuple Representation.
+	/*! \file tuple.h
+		\brief Tuple
 
-		A value of values.
+		An implementation of Tuples in C-Lang using void pointers.
+	*/
+
+	/*! \def TUPLEAPI
+		\brief Shorthand for __declspec(dllimport)
+	*/
+
+	/*! \def TUPLECALL
+		\brief Shorthand for __cdecl
+	*/
+
+	/*!
+		\brief A Tuple Representation. A value of values.
+
 		A Tuple contains a collection of pointers to values,
 		as well as information for if specific values were allocated on the stack or not.
 
 		If the flags for each t_ptr provided in t_stack are incorrectly assigned,
 		memory leakage will occur.
+
+		\sa make_tuple(), free_tuple()
 	*/
-	typedef struct s_tuple {
-		int t_size;
-		void** t_ptrs;
-		int* t_stack;
+	typedef struct tuple {
+		int t_size; ///< The number of pointers allocated to the t_ptrs array.
+		void** t_ptrs; ///< A collection of generic pointers, each pointer pointing to a value of any type.
+		int* t_stack; ///< A collection of flags identifying whether or not a ptr on t_ptrs of the same index has been allocated on the stack.
 	} tuple;
 
-	/**
-		A Part of a Tuple.
+	/*!
+		\brief A Part of a Tuple.
 
 		A Tuple Pointer or a Tuple Part is a value that contains a pointer to a value
 		and a flag suggesting whether or not the value was allocated on the stack.
 
 		If the on_stack flag is incorrectly applied, then memory leakage will occur.
+
+		\sa tptr(), tptr_stack(), free_tptr()
 	*/
-	typedef struct s_tuple_part {
-		void* ptr;
-		int on_stack;
+	typedef struct tuple_ptr {
+		void* ptr; ///< A pointer to a value of any type.
+		int on_stack; ///< A falg identifying whether or not the value assigned to ptr has been allocated on the stack.
 	} tuple_ptr;
 
-	/**
-		tuple* make_tuple(int n_args, ...)
-		Pass a collection of tuple_ptr* in order to create a single tuple value that points to each value in the collection.
+	/*! \fn tuple* make_tuple(int n_args, ...)
+		\brief Pass a collection of tuple_ptr* in order to create a single tuple value that points to each value in the collection.
 
-		@param n_args The number of arguments in the variable argument collection,
-		@param ... The collection of tuple_ptr pointers, preferrably created via tptr(void* ptr) or tptr_stack(void* ptr).
-		@see tptr(void* ptr)
-		@see tptr_stack(void* ptr)
-		@see free_tuple(tuple* t)
+		\param n_args The number of arguments in the variable argument collection,
+		\param ... The collection of tuple_ptr pointers, preferrably created via tptr(void* ptr) or tptr_stack(void* ptr).
+		\return A tuple pointer that contains a collection of pointers to values of any type.
 
-		@return A tuple pointer that contains a collection of pointers to values of any type.
+		\sa tptr(), tptr_stack(), free_tuple()
 	*/
 	TUPLEAPI tuple* TUPLECALL make_tuple(int n_args, ...);
 
-	/**
-		void free_tuple(tuple* t)
-		Pass a pointer to a tuple to be correctly freed and deallocated.
-		Ptrs in the tuple that are on the stack will be ignored.
+	/*!	\fn void free_tuple(tuple* t)
+		\brief Pass a pointer to a tuple to be correctly freed and deallocated. Ptrs in the tuple that are on the stack will be ignored.
 
-		@param t A pointer to an allocated tuple.
-		@see make_tuple(int n_args, ...)
+		\param t A pointer to an allocated tuple.
+		\sa make_tuple()
 	*/
 	TUPLEAPI void TUPLECALL free_tuple(tuple* t);
 
-	/*
-		tuple_ptr* tptr_stack(void* ptr)
-		Pass STACK ALLOCATED pointers through tptr_stack(void*) to create a tuple_ptre* for make_tuple(int, ...)
-		
-		@param ptr A pointer to any value that was allocated on the stack.
-		@see tptr(void* ptr)
-		@see free_tptr(tuple_ptr* tptr)
-		@see make_tuple(int n_args, ...)
-		
-		@return A tuple_ptr* with a void* ptr assigned to the value passed through the ptr param, and an on_stack flag.
-	*/
-	TUPLEAPI tuple_ptr* TUPLECALL tptr_stack(void* ptr);
-	/**
-		tuple_ptr* tptr(void* ptr)
-		Pass HEAP ALLOCATED pointers through tptr(void*) to create a tuple_ptr* for make_tuple(int, ...)
-		
-		@param ptr A pointer to any value that was allocated on the heap.
-		@see tptr_stack(void* ptr)
-		@see free_tptr(tuple_ptr* tptr)
-		@see make_tuple(int n_args, ...)
+	/*!	\fn tuple_ptr* tptr_stack(void* ptr)
+		\brief Pass STACK ALLOCATED pointers to create a tuple_ptre* for make_tuple(int, ...)
 
-		@return A tuple_ptr* with a void* ptr assigned to the value passed through the ptr param, and no on_stack flag.
+		\param vptr A pointer to any value that was allocated on the stack.
+		\return A tuple_ptr* with a void* ptr assigned to the value passed through the ptr param, and an on_stack flag.
+		\sa tptr(), free_tptr(), make_tuple()
 	*/
-	TUPLEAPI tuple_ptr* TUPLECALL tptr(void* ptr);
-	/**
-		void free_tptr(tuple_ptr* tptr)
-		Pass a tuple_ptr* to be correctly freed and deallocated. Stack-allocated values will be ignored.
+	TUPLEAPI tuple_ptr* TUPLECALL tptr_stack(void* vptr);
 
-		@param tptr A pointer to a tuple_ptr value to be deallocated, including the tptr->ptr value if the on_stack flag is false.
-		@see tptr(void* ptr)
-		@see tptr_stack(void* ptr)
+	/*!	\fn tuple_ptr* tptr(void* ptr)
+		\brief Pass HEAP ALLOCATED pointers to create a tuple_ptr* for make_tuple(int, ...)
+
+		\param vptr A pointer to any value that was allocated on the heap.
+		\return A tuple_ptr* with a void* ptr assigned to the value passed through the ptr param, and no on_stack flag.
+		\sa tptr_stack(), free_tptr(), make_tuple()
 	*/
-	TUPLEAPI void TUPLECALL free_tptr(tuple_ptr* tptr);
+	TUPLEAPI tuple_ptr* TUPLECALL tptr(void* vptr);
+
+	/*!	\fn void free_tptr(tuple_ptr* tptr)
+		\brief Pass a tuple_ptr* to be correctly freed and deallocated. Stack-allocated values will be ignored.
+
+		\param tptr A pointer to a tuple_ptr value to be deallocated, including the tptr->ptr value if the on_stack flag is false.
+		\sa tptr(), tptr_stack()
+	*/
+	TUPLEAPI void TUPLECALL free_tptr(tuple_ptr* vptr);
 
 #ifdef __cplusplus
 }
