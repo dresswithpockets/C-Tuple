@@ -91,7 +91,7 @@ extern "c" {
 	*/
 	TUPLEAPI int TUPLECALL make_tuple(tuple* t, int n_args, ...);
 
-	/*!	\fn void free_tuple(tuple* t)
+	/*!	\fn void free_tuple(tuple t)
 		\brief Pass a pointer to a tuple to be correctly freed and deallocated.
 
 		Values in the tuple that have an associated flag identifying it as a stack-allocated value will be ignored when freeing tuple's via free_tuple().
@@ -104,7 +104,7 @@ extern "c" {
 	/*!	\fn tuple_ptr* tptr_unowned(void* ptr)
 		\brief Pass STACK ALLOCATED pointers to create a tuple_ptr*.
 
-		\param vptr A pointer to any value that was allocated on the stack.
+		\param ptr A pointer to any value that was allocated on the stack.
 		\return A tuple_ptr* with a void* ptr assigned to the value passed through vptr, with the on_stack flag set to true.
 		\sa tptr_owned(), free_tptr_ptr(), make_tuple()
 	*/
@@ -113,7 +113,7 @@ extern "c" {
 	/*!	\fn tuple_ptr* tptr_owned(void* ptr)
 		\brief Pass HEAP ALLOCATED pointers to create a tuple_ptr*.
 
-		\param vptr A pointer to any value that was allocated on the heap.
+		\param ptr A pointer to any value that was allocated on the heap.
 		\return A tuple_ptr* with a void* ptr assigned to the value passed through vptr, with the on_stack flag set to false.
 		\sa tptr_unowned(), free_tptr_ptr(), make_tuple()
 	*/

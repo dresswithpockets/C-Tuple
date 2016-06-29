@@ -31,16 +31,14 @@ typedef struct \hyperlink{structtuple__ptr}{tuple\+\_\+ptr} \hyperlink{tuple_8h_
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{tuple_8h_a5a083b1a20dd3838eec043178da260f6}{T\+U\+P\+L\+E\+A\+PI} \hyperlink{structtuple}{tuple} $\ast$\hyperlink{tuple_8h_a18b3bb72fbceed6c788b82d323ec63e1}{T\+U\+P\+L\+E\+C\+A\+LL} \hyperlink{tuple_8h_a7c18a9b99b81dc06281da4ef9b07f21c}{make\+\_\+tuple} (int n\+\_\+args,...)
-\begin{DoxyCompactList}\small\item\em Pass a collection of tuple\+\_\+ptr$\ast$ to create a collection of any-\/value pointers. \end{DoxyCompactList}\item 
-\hyperlink{tuple_8h_a5a083b1a20dd3838eec043178da260f6}{T\+U\+P\+L\+E\+A\+PI} void \hyperlink{tuple_8h_a18b3bb72fbceed6c788b82d323ec63e1}{T\+U\+P\+L\+E\+C\+A\+LL} \hyperlink{tuple_8h_a2f58dd54e26e4c82baf1477651176992}{free\+\_\+tuple} (\hyperlink{structtuple}{tuple} $\ast$t)
+\hyperlink{tuple_8h_a5a083b1a20dd3838eec043178da260f6}{T\+U\+P\+L\+E\+A\+PI} int \hyperlink{tuple_8h_a18b3bb72fbceed6c788b82d323ec63e1}{T\+U\+P\+L\+E\+C\+A\+LL} \hyperlink{tuple_8h_a73b2ab5636bd0c07072be9d5301da0ec}{make\+\_\+tuple} (\hyperlink{structtuple}{tuple} $\ast$t, int n\+\_\+args,...)
+\begin{DoxyCompactList}\small\item\em Pass a collection of \hyperlink{structtuple__ptr}{tuple\+\_\+ptr} to create a collection of any-\/value pointers. \end{DoxyCompactList}\item 
+\hyperlink{tuple_8h_a5a083b1a20dd3838eec043178da260f6}{T\+U\+P\+L\+E\+A\+PI} void \hyperlink{tuple_8h_a18b3bb72fbceed6c788b82d323ec63e1}{T\+U\+P\+L\+E\+C\+A\+LL} \hyperlink{tuple_8h_aecfbe1880635d915243610c074f441bb}{free\+\_\+tuple} (\hyperlink{structtuple}{tuple} t)
 \begin{DoxyCompactList}\small\item\em Pass a pointer to a tuple to be correctly freed and deallocated. \end{DoxyCompactList}\item 
-\hyperlink{tuple_8h_a5a083b1a20dd3838eec043178da260f6}{T\+U\+P\+L\+E\+A\+PI} \hyperlink{structtuple__ptr}{tuple\+\_\+ptr} $\ast$\hyperlink{tuple_8h_a18b3bb72fbceed6c788b82d323ec63e1}{T\+U\+P\+L\+E\+C\+A\+LL} \hyperlink{tuple_8h_ad407b45f88fa00ec6e549b5b4f214acc}{tptr\+\_\+stack} (void $\ast$vptr)
+\hyperlink{tuple_8h_a5a083b1a20dd3838eec043178da260f6}{T\+U\+P\+L\+E\+A\+PI} \hyperlink{structtuple__ptr}{tuple\+\_\+ptr} \hyperlink{tuple_8h_a18b3bb72fbceed6c788b82d323ec63e1}{T\+U\+P\+L\+E\+C\+A\+LL} \hyperlink{tuple_8h_a27c87c74b11c1f626599143ab6f69859}{tptr\+\_\+unowned} (void $\ast$ptr)
 \begin{DoxyCompactList}\small\item\em Pass S\+T\+A\+CK A\+L\+L\+O\+C\+A\+T\+ED pointers to create a tuple\+\_\+ptr$\ast$. \end{DoxyCompactList}\item 
-\hyperlink{tuple_8h_a5a083b1a20dd3838eec043178da260f6}{T\+U\+P\+L\+E\+A\+PI} \hyperlink{structtuple__ptr}{tuple\+\_\+ptr} $\ast$\hyperlink{tuple_8h_a18b3bb72fbceed6c788b82d323ec63e1}{T\+U\+P\+L\+E\+C\+A\+LL} \hyperlink{tuple_8h_aab8b4f7c3d6ed7f76939d132d9656f60}{tptr} (void $\ast$vptr)
-\begin{DoxyCompactList}\small\item\em Pass H\+E\+AP A\+L\+L\+O\+C\+A\+T\+ED pointers to create a tuple\+\_\+ptr$\ast$. \end{DoxyCompactList}\item 
-\hyperlink{tuple_8h_a5a083b1a20dd3838eec043178da260f6}{T\+U\+P\+L\+E\+A\+PI} void \hyperlink{tuple_8h_a18b3bb72fbceed6c788b82d323ec63e1}{T\+U\+P\+L\+E\+C\+A\+LL} \hyperlink{tuple_8h_a5f040f5026ad0e268ef7d2caf0544bb2}{free\+\_\+tptr} (\hyperlink{structtuple__ptr}{tuple\+\_\+ptr} $\ast$vptr)
-\begin{DoxyCompactList}\small\item\em Pass a tuple\+\_\+ptr$\ast$ to be correctly freed and deallocated. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{tuple_8h_a5a083b1a20dd3838eec043178da260f6}{T\+U\+P\+L\+E\+A\+PI} \hyperlink{structtuple__ptr}{tuple\+\_\+ptr} \hyperlink{tuple_8h_a18b3bb72fbceed6c788b82d323ec63e1}{T\+U\+P\+L\+E\+C\+A\+LL} \hyperlink{tuple_8h_a686c6e334af297fc6fc23540cb13dfc4}{tptr\+\_\+owned} (void $\ast$ptr)
+\begin{DoxyCompactList}\small\item\em Pass H\+E\+AP A\+L\+L\+O\+C\+A\+T\+ED pointers to create a tuple\+\_\+ptr$\ast$. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -61,7 +59,7 @@ A Tuple contains a collection of pointers to values, as well as information for 
 If the flags for each t\+\_\+ptr provided in t\+\_\+stack are incorrectly assigned, memory leakage will occur.
 
 \begin{DoxySeeAlso}{See also}
-\hyperlink{tuple_8h_a7c18a9b99b81dc06281da4ef9b07f21c}{make\+\_\+tuple()}, \hyperlink{tuple_8h_a2f58dd54e26e4c82baf1477651176992}{free\+\_\+tuple()} 
+\hyperlink{tuple_8h_a73b2ab5636bd0c07072be9d5301da0ec}{make\+\_\+tuple()}, \hyperlink{tuple_8h_aecfbe1880635d915243610c074f441bb}{free\+\_\+tuple()} 
 \end{DoxySeeAlso}
 \index{tuple.\+h@{tuple.\+h}!tuple\+\_\+ptr@{tuple\+\_\+ptr}}
 \index{tuple\+\_\+ptr@{tuple\+\_\+ptr}!tuple.\+h@{tuple.\+h}}
@@ -75,44 +73,23 @@ A Tuple Pointer or a Tuple Part is a value that contains a pointer to a value an
 If the on\+\_\+stack flag is incorrectly applied, then memory leakage will occur.
 
 \begin{DoxySeeAlso}{See also}
-\hyperlink{tuple_8h_aab8b4f7c3d6ed7f76939d132d9656f60}{tptr()}, \hyperlink{tuple_8h_ad407b45f88fa00ec6e549b5b4f214acc}{tptr\+\_\+stack()}, \hyperlink{tuple_8h_a5f040f5026ad0e268ef7d2caf0544bb2}{free\+\_\+tptr()} 
+\hyperlink{tuple_8h_a686c6e334af297fc6fc23540cb13dfc4}{tptr\+\_\+owned()}, \hyperlink{tuple_8h_a27c87c74b11c1f626599143ab6f69859}{tptr\+\_\+unowned()}, free\+\_\+tptr() 
 \end{DoxySeeAlso}
 
 
 \subsection{Function Documentation}
-\index{tuple.\+h@{tuple.\+h}!free\+\_\+tptr@{free\+\_\+tptr}}
-\index{free\+\_\+tptr@{free\+\_\+tptr}!tuple.\+h@{tuple.\+h}}
-\subsubsection[{\texorpdfstring{free\+\_\+tptr(tuple\+\_\+ptr $\ast$vptr)}{free_tptr(tuple_ptr *vptr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\+U\+P\+L\+E\+A\+PI} void {\bf T\+U\+P\+L\+E\+C\+A\+LL} free\+\_\+tptr (
-\begin{DoxyParamCaption}
-\item[{{\bf tuple\+\_\+ptr} $\ast$}]{tptr}
-\end{DoxyParamCaption}
-)}\hypertarget{tuple_8h_a5f040f5026ad0e268ef7d2caf0544bb2}{}\label{tuple_8h_a5f040f5026ad0e268ef7d2caf0544bb2}
-
-
-Pass a tuple\+\_\+ptr$\ast$ to be correctly freed and deallocated. 
-
-Values which have been flagged as stack-\/allocated will be ignored when freeing \hyperlink{structtuple__ptr}{tuple\+\_\+ptr}\textquotesingle{}s via \hyperlink{tuple_8h_a5f040f5026ad0e268ef7d2caf0544bb2}{free\+\_\+tptr()}.
-
-
-\begin{DoxyParams}{Parameters}
-{\em tptr} & A pointer to a \hyperlink{structtuple__ptr}{tuple\+\_\+ptr} value to be deallocated, including the tptr-\/$>$ptr value if the on\+\_\+stack flag is false. \\
-\hline
-\end{DoxyParams}
-\begin{DoxySeeAlso}{See also}
-\hyperlink{tuple_8h_aab8b4f7c3d6ed7f76939d132d9656f60}{tptr()}, \hyperlink{tuple_8h_ad407b45f88fa00ec6e549b5b4f214acc}{tptr\+\_\+stack()} 
-\end{DoxySeeAlso}
 \index{tuple.\+h@{tuple.\+h}!free\+\_\+tuple@{free\+\_\+tuple}}
 \index{free\+\_\+tuple@{free\+\_\+tuple}!tuple.\+h@{tuple.\+h}}
-\subsubsection[{\texorpdfstring{free\+\_\+tuple(tuple $\ast$t)}{free_tuple(tuple *t)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\+U\+P\+L\+E\+A\+PI} void {\bf T\+U\+P\+L\+E\+C\+A\+LL} free\+\_\+tuple (
+\subsubsection[{\texorpdfstring{free\+\_\+tuple(tuple t)}{free_tuple(tuple t)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\+U\+P\+L\+E\+A\+PI} void {\bf T\+U\+P\+L\+E\+C\+A\+LL} free\+\_\+tuple (
 \begin{DoxyParamCaption}
-\item[{{\bf tuple} $\ast$}]{t}
+\item[{{\bf tuple}}]{t}
 \end{DoxyParamCaption}
-)}\hypertarget{tuple_8h_a2f58dd54e26e4c82baf1477651176992}{}\label{tuple_8h_a2f58dd54e26e4c82baf1477651176992}
+)}\hypertarget{tuple_8h_aecfbe1880635d915243610c074f441bb}{}\label{tuple_8h_aecfbe1880635d915243610c074f441bb}
 
 
 Pass a pointer to a tuple to be correctly freed and deallocated. 
 
-Values in the tuple that have an associated flag identifying it as a stack-\/allocated value will be ignored when freeing tuple\textquotesingle{}s via \hyperlink{tuple_8h_a2f58dd54e26e4c82baf1477651176992}{free\+\_\+tuple()}.
+Values in the tuple that have an associated flag identifying it as a stack-\/allocated value will be ignored when freeing tuple\textquotesingle{}s via \hyperlink{tuple_8h_aecfbe1880635d915243610c074f441bb}{free\+\_\+tuple()}.
 
 
 \begin{DoxyParams}{Parameters}
@@ -120,74 +97,79 @@ Values in the tuple that have an associated flag identifying it as a stack-\/all
 \hline
 \end{DoxyParams}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{tuple_8h_a7c18a9b99b81dc06281da4ef9b07f21c}{make\+\_\+tuple()} 
+\hyperlink{tuple_8h_a73b2ab5636bd0c07072be9d5301da0ec}{make\+\_\+tuple()} 
 \end{DoxySeeAlso}
 \index{tuple.\+h@{tuple.\+h}!make\+\_\+tuple@{make\+\_\+tuple}}
 \index{make\+\_\+tuple@{make\+\_\+tuple}!tuple.\+h@{tuple.\+h}}
-\subsubsection[{\texorpdfstring{make\+\_\+tuple(int n\+\_\+args,...)}{make_tuple(int n_args,...)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\+U\+P\+L\+E\+A\+PI} {\bf tuple}$\ast$ {\bf T\+U\+P\+L\+E\+C\+A\+LL} make\+\_\+tuple (
+\subsubsection[{\texorpdfstring{make\+\_\+tuple(tuple $\ast$t, int n\+\_\+args,...)}{make_tuple(tuple *t, int n_args,...)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\+U\+P\+L\+E\+A\+PI} int {\bf T\+U\+P\+L\+E\+C\+A\+LL} make\+\_\+tuple (
 \begin{DoxyParamCaption}
+\item[{{\bf tuple} $\ast$}]{t, }
 \item[{int}]{n\+\_\+args, }
 \item[{}]{...}
 \end{DoxyParamCaption}
-)}\hypertarget{tuple_8h_a7c18a9b99b81dc06281da4ef9b07f21c}{}\label{tuple_8h_a7c18a9b99b81dc06281da4ef9b07f21c}
+)}\hypertarget{tuple_8h_a73b2ab5636bd0c07072be9d5301da0ec}{}\label{tuple_8h_a73b2ab5636bd0c07072be9d5301da0ec}
 
 
-Pass a collection of tuple\+\_\+ptr$\ast$ to create a collection of any-\/value pointers. 
+Pass a collection of \hyperlink{structtuple__ptr}{tuple\+\_\+ptr} to create a collection of any-\/value pointers. 
+
+Ownership of the ptrs within tuple\+\_\+ptrs is passed onto tuple$\ast$ t.
 
 
-\begin{DoxyParams}{Parameters}
-{\em n\+\_\+args} & The number of arguments in the variable argument collection, \\
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em t} & A pointer to an instance of tuple that is initialized on the stack. \\
 \hline
-{\em ...} & The collection of \hyperlink{structtuple__ptr}{tuple\+\_\+ptr} pointers, preferrably created via \hyperlink{tuple_8h_aab8b4f7c3d6ed7f76939d132d9656f60}{tptr(void$\ast$ ptr)} or \hyperlink{tuple_8h_ad407b45f88fa00ec6e549b5b4f214acc}{tptr\+\_\+stack(void$\ast$ ptr)}. \\
+\mbox{\tt in}  & {\em n\+\_\+args} & The number of arguments in the variable argument collection, \\
+\hline
+\mbox{\tt in}  & {\em ...} & The collection of \hyperlink{structtuple__ptr}{tuple\+\_\+ptr} pointers, preferrably created via \hyperlink{tuple_8h_a686c6e334af297fc6fc23540cb13dfc4}{tptr\+\_\+owned(void$\ast$ ptr)} or \hyperlink{tuple_8h_a27c87c74b11c1f626599143ab6f69859}{tptr\+\_\+unowned(void$\ast$ ptr)}. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A tuple pointer that contains a collection of pointers to values of any type.
+0 if there is an error when allocating for the tuple, 1 otherwise.
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{tuple_8h_aab8b4f7c3d6ed7f76939d132d9656f60}{tptr()}, \hyperlink{tuple_8h_ad407b45f88fa00ec6e549b5b4f214acc}{tptr\+\_\+stack()}, \hyperlink{tuple_8h_a2f58dd54e26e4c82baf1477651176992}{free\+\_\+tuple()} 
+\hyperlink{tuple_8h_a686c6e334af297fc6fc23540cb13dfc4}{tptr\+\_\+owned()}, \hyperlink{tuple_8h_a27c87c74b11c1f626599143ab6f69859}{tptr\+\_\+unowned()}, \hyperlink{tuple_8h_aecfbe1880635d915243610c074f441bb}{free\+\_\+tuple()} 
 \end{DoxySeeAlso}
-\index{tuple.\+h@{tuple.\+h}!tptr@{tptr}}
-\index{tptr@{tptr}!tuple.\+h@{tuple.\+h}}
-\subsubsection[{\texorpdfstring{tptr(void $\ast$vptr)}{tptr(void *vptr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\+U\+P\+L\+E\+A\+PI} {\bf tuple\+\_\+ptr}$\ast$ {\bf T\+U\+P\+L\+E\+C\+A\+LL} tptr (
+\index{tuple.\+h@{tuple.\+h}!tptr\+\_\+owned@{tptr\+\_\+owned}}
+\index{tptr\+\_\+owned@{tptr\+\_\+owned}!tuple.\+h@{tuple.\+h}}
+\subsubsection[{\texorpdfstring{tptr\+\_\+owned(void $\ast$ptr)}{tptr_owned(void *ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\+U\+P\+L\+E\+A\+PI} {\bf tuple\+\_\+ptr} {\bf T\+U\+P\+L\+E\+C\+A\+LL} tptr\+\_\+owned (
 \begin{DoxyParamCaption}
-\item[{void $\ast$}]{vptr}
+\item[{void $\ast$}]{ptr}
 \end{DoxyParamCaption}
-)}\hypertarget{tuple_8h_aab8b4f7c3d6ed7f76939d132d9656f60}{}\label{tuple_8h_aab8b4f7c3d6ed7f76939d132d9656f60}
+)}\hypertarget{tuple_8h_a686c6e334af297fc6fc23540cb13dfc4}{}\label{tuple_8h_a686c6e334af297fc6fc23540cb13dfc4}
 
 
 Pass H\+E\+AP A\+L\+L\+O\+C\+A\+T\+ED pointers to create a tuple\+\_\+ptr$\ast$. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em vptr} & A pointer to any value that was allocated on the heap. \\
+{\em ptr} & A pointer to any value that was allocated on the heap. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A tuple\+\_\+ptr$\ast$ with a void$\ast$ ptr assigned to the value passed through vptr, with the on\+\_\+stack flag set to false. 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{tuple_8h_ad407b45f88fa00ec6e549b5b4f214acc}{tptr\+\_\+stack()}, \hyperlink{tuple_8h_a5f040f5026ad0e268ef7d2caf0544bb2}{free\+\_\+tptr()}, \hyperlink{tuple_8h_a7c18a9b99b81dc06281da4ef9b07f21c}{make\+\_\+tuple()} 
+\hyperlink{tuple_8h_a27c87c74b11c1f626599143ab6f69859}{tptr\+\_\+unowned()}, free\+\_\+tptr\+\_\+ptr(), \hyperlink{tuple_8h_a73b2ab5636bd0c07072be9d5301da0ec}{make\+\_\+tuple()} 
 \end{DoxySeeAlso}
-\index{tuple.\+h@{tuple.\+h}!tptr\+\_\+stack@{tptr\+\_\+stack}}
-\index{tptr\+\_\+stack@{tptr\+\_\+stack}!tuple.\+h@{tuple.\+h}}
-\subsubsection[{\texorpdfstring{tptr\+\_\+stack(void $\ast$vptr)}{tptr_stack(void *vptr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\+U\+P\+L\+E\+A\+PI} {\bf tuple\+\_\+ptr}$\ast$ {\bf T\+U\+P\+L\+E\+C\+A\+LL} tptr\+\_\+stack (
+\index{tuple.\+h@{tuple.\+h}!tptr\+\_\+unowned@{tptr\+\_\+unowned}}
+\index{tptr\+\_\+unowned@{tptr\+\_\+unowned}!tuple.\+h@{tuple.\+h}}
+\subsubsection[{\texorpdfstring{tptr\+\_\+unowned(void $\ast$ptr)}{tptr_unowned(void *ptr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\+U\+P\+L\+E\+A\+PI} {\bf tuple\+\_\+ptr} {\bf T\+U\+P\+L\+E\+C\+A\+LL} tptr\+\_\+unowned (
 \begin{DoxyParamCaption}
-\item[{void $\ast$}]{vptr}
+\item[{void $\ast$}]{ptr}
 \end{DoxyParamCaption}
-)}\hypertarget{tuple_8h_ad407b45f88fa00ec6e549b5b4f214acc}{}\label{tuple_8h_ad407b45f88fa00ec6e549b5b4f214acc}
+)}\hypertarget{tuple_8h_a27c87c74b11c1f626599143ab6f69859}{}\label{tuple_8h_a27c87c74b11c1f626599143ab6f69859}
 
 
 Pass S\+T\+A\+CK A\+L\+L\+O\+C\+A\+T\+ED pointers to create a tuple\+\_\+ptr$\ast$. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em vptr} & A pointer to any value that was allocated on the stack. \\
+{\em ptr} & A pointer to any value that was allocated on the stack. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A tuple\+\_\+ptr$\ast$ with a void$\ast$ ptr assigned to the value passed through vptr, with the on\+\_\+stack flag set to true. 
 \end{DoxyReturn}
 \begin{DoxySeeAlso}{See also}
-\hyperlink{tuple_8h_aab8b4f7c3d6ed7f76939d132d9656f60}{tptr()}, \hyperlink{tuple_8h_a5f040f5026ad0e268ef7d2caf0544bb2}{free\+\_\+tptr()}, \hyperlink{tuple_8h_a7c18a9b99b81dc06281da4ef9b07f21c}{make\+\_\+tuple()} 
+\hyperlink{tuple_8h_a686c6e334af297fc6fc23540cb13dfc4}{tptr\+\_\+owned()}, free\+\_\+tptr\+\_\+ptr(), \hyperlink{tuple_8h_a73b2ab5636bd0c07072be9d5301da0ec}{make\+\_\+tuple()} 
 \end{DoxySeeAlso}
