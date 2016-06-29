@@ -106,7 +106,7 @@ extern "c" {
 
 		\param ptr A pointer to any value that was allocated on the stack.
 		\return A tuple_ptr* with a void* ptr assigned to the value passed through vptr, with the on_stack flag set to true.
-		\sa tptr_owned(), free_tptr_ptr(), make_tuple()
+		\sa tptr_owned(), make_tuple()
 	*/
 	TUPLEAPI tuple_ptr TUPLECALL tptr_unowned(void* ptr);
 
@@ -115,7 +115,7 @@ extern "c" {
 
 		\param ptr A pointer to any value that was allocated on the heap.
 		\return A tuple_ptr* with a void* ptr assigned to the value passed through vptr, with the on_stack flag set to false.
-		\sa tptr_unowned(), free_tptr_ptr(), make_tuple()
+		\sa tptr_unowned(), make_tuple()
 	*/
 	TUPLEAPI tuple_ptr TUPLECALL tptr_owned(void* ptr);
 
