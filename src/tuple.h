@@ -16,20 +16,15 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #if _WIN32
-
-#ifdef TUPLE_EXPORTS
-#define TUPLEAPI __declspec(dllexport)
+#	ifdef TUPLE_EXPORTS
+#		define TUPLEAPI __declspec(dllexport)
+#	else
+#		define TUPLEAPI __declspec(dllimport)
+#	endif
+#	define TUPLECALL __cdecl
 #else
-#define TUPLEAPI __declspec(dllimport)
-#endif
-
-#define TUPLECALL __cdecl
-
-#else
-
-#define TUPLEAPI
-#define TUPLECALL
-
+#	define TUPLEAPI
+#	define TUPLECALL
 #endif
 
 #ifdef __cplusplus
@@ -75,23 +70,26 @@ extern "c" {
 
 		If the on_stack flag is incorrectly applied, then memory leakage will occur.
 
-		\sa tptr(), tptr_stack(), free_tptr()
+		\sa tptr_owned(), tptr_unowned(), free_tptr()
 	*/
 	typedef struct tuple_ptr {
 		void* ptr; ///< A pointer to a value of any type.
 		int on_stack; ///< A flagg identifying whether or not the value assigned to ptr has been allocated on the stack.
 	} tuple_ptr;
 
-	/*! \fn tuple* make_tuple(int n_args, ...)
-		\brief Pass a collection of tuple_ptr* to create a collection of any-value pointers.
+	/*! \fn int make_tuple(tuple* t, int n_args, ...)
+		\brief Pass a collection of tuple_ptr to create a collection of any-value pointers.
 
-		\param n_args The number of arguments in the variable argument collection,
-		\param ... The collection of tuple_ptr pointers, preferrably created via tptr(void* ptr) or tptr_stack(void* ptr).
-		\return A tuple pointer that contains a collection of pointers to values of any type.
+		Ownership of the ptrs within tuple_ptrs is passed onto tuple* t.
 
-		\sa tptr(), tptr_stack(), free_tuple()
+		\param[out] t A pointer to an instance of tuple that is initialized on the stack.
+		\param[in] n_args The number of arguments in the variable argument collection,
+		\param[in] ... The collection of tuple_ptr pointers, preferrably created via tptr_owned(void* ptr) or tptr_unowned(void* ptr).
+		\return 0 if there is an error when allocating for the tuple, 1 otherwise.
+
+		\sa tptr_owned(), tptr_unowned(), free_tuple()
 	*/
-	TUPLEAPI tuple* TUPLECALL make_tuple(int n_args, ...);
+	TUPLEAPI int TUPLECALL make_tuple(tuple* t, int n_args, ...);
 
 	/*!	\fn void free_tuple(tuple* t)
 		\brief Pass a pointer to a tuple to be correctly freed and deallocated.
@@ -101,49 +99,25 @@ extern "c" {
 		\param t A pointer to an allocated tuple.
 		\sa make_tuple()
 	*/
-	TUPLEAPI void TUPLECALL free_tuple(tuple* t);
+	TUPLEAPI void TUPLECALL free_tuple(tuple t);
 
-	/*!	\fn tuple_ptr* tptr_stack(void* ptr)
+	/*!	\fn tuple_ptr* tptr_unowned(void* ptr)
 		\brief Pass STACK ALLOCATED pointers to create a tuple_ptr*.
 
 		\param vptr A pointer to any value that was allocated on the stack.
 		\return A tuple_ptr* with a void* ptr assigned to the value passed through vptr, with the on_stack flag set to true.
-		\sa tptr(), free_tptr(), make_tuple()
+		\sa tptr_owned(), free_tptr_ptr(), make_tuple()
 	*/
-	TUPLEAPI tuple_ptr* TUPLECALL tptr_stack(void* vptr);
+	TUPLEAPI tuple_ptr TUPLECALL tptr_unowned(void* ptr);
 
-	/*!	\fn tuple_ptr* tptr(void* ptr)
+	/*!	\fn tuple_ptr* tptr_owned(void* ptr)
 		\brief Pass HEAP ALLOCATED pointers to create a tuple_ptr*.
 
 		\param vptr A pointer to any value that was allocated on the heap.
 		\return A tuple_ptr* with a void* ptr assigned to the value passed through vptr, with the on_stack flag set to false.
-		\sa tptr_stack(), free_tptr(), make_tuple()
+		\sa tptr_unowned(), free_tptr_ptr(), make_tuple()
 	*/
-	TUPLEAPI tuple_ptr* TUPLECALL tptr(void* vptr);
-
-	/*!	\fn void free_tptr(tuple_ptr* tptr)
-		\brief Pass a tuple_ptr* to be correctly freed and deallocated.
-
-		Values which have been flagged as stack-allocated will be ignored when freeing tuple_ptr's via free_tptr().
-
-		\param tptr A pointer to a tuple_ptr value to be deallocated, including the tptr->ptr value if the on_stack flag is false.
-		\sa tptr(), tptr_stack()
-	*/
-	TUPLEAPI void TUPLECALL free_tptr(tuple_ptr* vptr);
-
-	/*! \fn void tuple_debug(int debug)
-		\brief pass a boolean flag to determine whether debug tuple output should be printed.
-
-		All memory allocations and frees will be printed, with associated addresses, including any information 
-
-		\param debug A flag value. When 0, then debug mode is turned off. Otherwise, debug mode is toggled on.
-	*/
-	TUPLEAPI void TUPLECALL tuple_debug(int debug);
-
-	/*! \fn void log_allocations()
-		\brief print a count of all mallocs and frees from within c-tuple.
-	*/
-	TUPLEAPI void TUPLECALL log_allocations();
+	TUPLEAPI tuple_ptr TUPLECALL tptr_owned(void* ptr);
 
 #ifdef __cplusplus
 }
