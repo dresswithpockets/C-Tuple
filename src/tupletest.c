@@ -5,7 +5,7 @@
 tuple test_tuple() {
 	
 	// Create a value on the heap for use in tptr_owned(void* vptr)
-	int* a = (int*)malloc(sizeof(int)); // Created on the heap
+	int* a = (int*)calloc(1, sizeof(int)); // Created on the heap
 	*a = 5129;
 	
 	// Create a value on the stack for use in tptr_unowned(void* vptr)
@@ -13,7 +13,7 @@ tuple test_tuple() {
 	
 	char* c = "Hello, World!";
 
-	long long int* d = (long long int*)malloc(sizeof(long long int));
+	long long int* d = (long long int*)calloc(1, sizeof(long long int));
 	*d = -5291828747;
 
 	// Use tptr_owned for heap-allocated pointers and tptr_unowned for stack-allocated pointers.
