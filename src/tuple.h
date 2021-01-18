@@ -1,6 +1,6 @@
 /*
 C-Tuple - Tuple style generic types in C.
-Copyright (c) 2016 Tristen Horton
+Copyright (c) 2020 dresswithpockets
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
